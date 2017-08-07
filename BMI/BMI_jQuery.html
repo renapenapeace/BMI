@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>sample5</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script>
+$(function(){
+	$("input").val("入力してください").css("color","#CCC").one("focus",function(){
+		$(this).val("").css("color","#000");
+	}).blur(function(){
+		if($(this).val()==""){
+			$(this).val("入力してください").css("color","#CCC").one("focus",function(){
+				$(this).val("").css("color","#000");
+			});
+		}
+	});
+});
+$(function(){
+	$("button").on("click",function(){
+		var h = $("input[name='height']").val();
+		var w = $("input[name='weight']").val();
+		var x = h/100;
+		var i = w/(x*x);
+			if(18.4>i){
+				$("#ans").text('やせ' + 'BMIは' +i + 'です')
+				$(".img").html("<img src='skinny.jpg' alt='痩せ体型' width='400'>")
+		}	else if(18.5<i && i<24){
+				$("#ans").text('普通' + 'BMIは' +i + 'です')
+		}	else if(25<i && i<29){
+				$("#ans").text('肥満度１' + 'BMIは' +i + 'です')
+				$(".img").html("<img src='fat.jpg' alt='ぽっちゃり体型' width='400'>")
+		}	else if(30<i && i<34){
+				$("#ans").text('肥満度２' + 'BMIは' +i + 'です')
+				$(".img").html("<img src='fat.jpg' alt='ぽっちゃり体型' width='400'>")
+		}	else if(35<i && i<39){
+				$("#ans").text('肥満度３' + 'BMIは' +i + 'です')
+				$(".img").html("<img src='fat.jpg' alt='ぽっちゃり体型' width='400'>")
+		}	else{
+				$("#ans").text('肥満度４' + 'BMIは' +i + 'です')
+				$(".img").html("<img src='fat.jpg' alt='ぽっちゃり体型' width='400'>")
+		}
+	});
+});
+		</script>
+		<style>
+			.wrap{
+				background-color: #3FF;
+        			width: 800px;
+              	height: 500px;
+            
+			}
+			h1{
+                font-size: 2em;
+                padding: 10px;
+             }
+			p{
+        			padding-bottom: 20px;
+              	padding-left: 20px;
+             }
+             .info{
+                 float: left;
+                 }
+		</style>
+	</head>
+    
+	<body>
+    		<div class="wrap">
+    		<section class="info">
+		<h1>BMIの計算</h1>
+		<p>体重：<input type="text" value="weight" name="weight">kg</p>
+		<p>身長：<input type="text" value="height" name="height">cm</p>
+        
+        <p id="ans"><button>心の準備は良いですか？</button></p>
+		</section>
+        <div class="img">
+        </div>
+        </div>
+    </body>
+</html>
